@@ -1,27 +1,21 @@
-// --- STEP 1: DEFINE YOUR DATA SOURCE ---
-// Replace this URL with the URL of your own Cloudflare Worker.
-const MOVIES_DATA_URL = 'movie-heaven.digimoviesvault.workers.dev';
+// --- DEFINE YOUR DATA SOURCE ---
+// IMPORTANT: Replace this placeholder with the real URL of your Cloudflare Worker.
+const MOVIES_DATA_URL = 'https://your-api-url.workers.dev';
 
 /* 
- * Your movies.json file on GitHub should look like this:
- * An array of objects, where each object has a `thumbnailUrl` and a `redirectUrl`.
- *
+ * This script expects your movies.json file on GitHub to have four fields:
  * [
  *   {
- *     "thumbnailUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
- *     "redirectUrl": "https://www.youtube.com/watch?v=some_video_id"
- *   },
- *   {
- *     "thumbnailUrl": "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
- *     "redirectUrl": "https://www.another-video-site.com/watch/12345"
+ *     "thumbnailUrl": "URL_TO_THE_POSTER_IMAGE",
+ *     "redirectUrl": "URL_TO_THE_VIDEO_OR_WEBSITE",
+ *     "title": "The Movie's Title",
+ *     "year": "2023"
  *   }
  * ]
  */
 
-// --- STEP 2: DYNAMICALLY CREATE AND DISPLAY MOVIE CARDS ---
-
 /**
- * Fetches movie data from the specified URL.
+ * Fetches movie data from your API.
  * @returns {Promise<Array>} A promise that resolves to an array of movie objects.
  */
 async function fetchMovies() {
@@ -35,41 +29,42 @@ async function fetchMovies() {
         return movies;
     } catch (error) {
         console.error('Failed to fetch movies:', error);
-        // Display an error message to the user in the grid
         movieGrid.innerHTML = `<p class="grid-message">Could not load movies. Please try again later.</p>`;
-        return []; // Return an empty array on failure
+        return [];
     }
 }
 
 /**
- * Creates a single movie card element.
- * @param {object} movie - A movie object with `thumbnailUrl` and `redirectUrl`.
- * @returns {HTMLElement} The movie card element.
+ * Creates a single movie card element with the hover information.
+ * @param {object} movie - A movie object with title, year, thumbnailUrl, and redirectUrl.
+ * @returns {HTMLElement} The complete movie card element.
  */
 function createMovieCard(movie) {
-    const movieCard = document.createElement('a'); // Changed to an anchor tag for semantics
+    const movieCard = document.createElement('a');
     movieCard.className = 'movie-card';
-    movieCard.href = movie.redirectUrl; // Set the redirect URL
-    movieCard.target = '_blank'; // Ensure it opens in a new tab
+    movieCard.href = movie.redirectUrl;
+    movieCard.target = '_blank';
     movieCard.rel = 'noopener noreferrer';
 
-    // Use the thumbnail URL from the data. Add a placeholder in case of error.
+    // This block builds the HTML for each card, including the hidden hover info.
     movieCard.innerHTML = `
-        <img src="${movie.thumbnailUrl}" alt="Movie Poster" onerror="this.src='https://via.placeholder.com/200x300?text=Image+Not+Found'">
+        <img src="${movie.thumbnailUrl}" alt="${movie.title || 'Movie Poster'}" onerror="this.src='https://via.placeholder.com/200x300?text=Image+Not+Found'">
+        <div class="movie-info">
+            <div class="movie-title">${movie.title || ''}</div>
+            <div class="movie-year">${movie.year || ''}</div>
+        </div>
     `;
     
     return movieCard;
 }
 
 /**
- * Renders a list of movies into the main grid.
+ * Renders the full list of movies into the grid on the webpage.
  * @param {Array} movies - An array of movie objects.
  */
 function displayMovies(movies) {
     const movieGrid = document.getElementById('movie-grid');
-    
-    // Clear any previous content (like loading or error messages)
-    movieGrid.innerHTML = '';
+    movieGrid.innerHTML = ''; // Clear any "Loading..." message.
 
     if (!movies || movies.length === 0) {
         movieGrid.innerHTML = `<p class="grid-message">No movies found.</p>`;
@@ -82,10 +77,8 @@ function displayMovies(movies) {
     });
 }
 
-// --- STEP 3: INITIALIZE THE APPLICATION ---
-
 /**
- * The main function to initialize the page.
+ * The main function that runs when the page loads.
  */
 async function initializeApp() {
     const movieGrid = document.getElementById('movie-grid');
@@ -94,25 +87,24 @@ async function initializeApp() {
     const movies = await fetchMovies();
     displayMovies(movies);
 
-    // Setup other links (optional, if they have a consistent target)
     setupStaticLinks();
 }
 
 /**
- * Function to handle all static link clicks (header, footer, etc.).
+ * A helper function to make sure all other links on the page work.
  */
 function setupStaticLinks() {
     const links = document.querySelectorAll('.nav-link, .watch-now-btn, .my-list-btn, .footer-link');
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            // You can set a default link for these, or handle them differently
+            // You can change this default link later if you want.
             window.open('https://www.youtube.com/@techpk3013', '_blank');
         });
     });
 }
 
-// Header scroll effect
+// Adds the "scrolled" effect to the header when you scroll down.
 window.addEventListener('scroll', () => {
     const header = document.getElementById('header');
     if (window.scrollY > 50) {
@@ -122,5 +114,5 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Initialize the page when the DOM is fully loaded
+// This line starts the entire process once the webpage is ready.
 document.addEventListener('DOMContentLoaded', initializeApp);
