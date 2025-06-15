@@ -55,18 +55,32 @@ header.scrolled {
 
 /* Hero Section */
 .hero {
-    height: 80vh; 
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    height: 90vh; /* A good height to work with */
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
         url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 50px;
-    position: relative;
+    position: relative; /* Needed for the ::after pseudo-element */
+}
+
+/* --- NEW: FADE-OUT EFFECT --- */
+/* This adds a new layer on top of the hero image to create a smooth fade at the bottom. */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 250px; /* Adjust the height of the fade */
+    background: linear-gradient(to top, #141414, transparent);
+    z-index: 1;
 }
 
 .hero-content {
     max-width: 600px;
+    position: relative; /* Ensure hero content stays on top of the fade */
     z-index: 2;
 }
 
@@ -120,9 +134,11 @@ header.scrolled {
 /* Movies Grid */
 .movies-section {
     padding: 50px;
-    margin-top: 0; 
     position: relative;
     z-index: 10;
+    /* --- THE FIX IS HERE --- */
+    /* This pulls the entire movie section up from behind the hero image */
+    margin-top: -250px; 
 }
 
 .section-title {
@@ -238,16 +254,16 @@ footer {
     color: #757575;
 }
 
-/* --- NEW STYLES FOR VPN NOTICE BAR --- */
+/* VPN Notice Bar */
 .vpn-notice {
     background-color: #222;
-    border-left: 4px solid #e50914; /* A nice red accent border */
+    border-left: 4px solid #e50914; 
     border-radius: 4px;
     padding: 15px 20px;
-    margin-bottom: 40px; /* Space between the notice and the movie title */
+    margin-bottom: 40px; 
     display: flex;
     align-items: center;
-    gap: 15px; /* Space between the icon and the text */
+    gap: 15px;
 }
 
 .vpn-notice i {
@@ -264,7 +280,6 @@ footer {
 .vpn-notice p strong {
     color: #fff;
 }
-/* --- END OF NEW STYLES --- */
 
 /* Responsive */
 @media (max-width: 768px) {
