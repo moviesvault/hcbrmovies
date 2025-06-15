@@ -121,7 +121,7 @@ header.scrolled {
 .movies-section {
     padding: 50px;
     margin-top: -100px;
-    position: relative; /* Ensure it is above the hero gradient */
+    position: relative;
     z-index: 10;
 }
 
@@ -157,6 +157,35 @@ header.scrolled {
     height: 300px;
     object-fit: cover;
     display: block;
+}
+
+/* Styles for the hover effect */
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Allows clicks to go through to the link */
+}
+
+.movie-card:hover .movie-info {
+    opacity: 1; /* Revealed on hover */
+}
+
+.movie-title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.movie-year {
+    font-size: 0.8rem;
+    color: #d2d2d2;
 }
 
 /* Footer */
@@ -202,7 +231,7 @@ footer {
 }
 
 .grid-message {
-    grid-column: 1 / -1; /* Span all columns */
+    grid-column: 1 / -1;
     text-align: center;
     font-size: 1.2rem;
     padding: 40px 0;
