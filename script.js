@@ -1,6 +1,6 @@
 // --- STEP 1: DEFINE YOUR DATA SOURCE ---
 // Replace this URL with the URL of your own Cloudflare Worker.
-const MOVIES_DATA_URL = 'https://my-movie-api.your-username.workers.dev';
+const MOVIES_DATA_URL = 'movie-heaven.digimoviesvault.workers.dev';
 
 /* 
  * Your movies.json file on GitHub should look like this:
