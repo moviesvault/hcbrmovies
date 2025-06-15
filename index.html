@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Yard - Your Ultimate Movie Destination</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #141414;
+            color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+            transition: background-color 0.3s;
+        }
+
+        header.scrolled {
+            background-color: #141414;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e50914;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e50914;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 50px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #e50914;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #f40612;
+        }
+
+        .btn-secondary {
+            background-color: rgba(109, 109, 110, 0.7);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(109, 109, 110, 0.4);
+        }
+
+        /* Movies Grid */
+        .movies-section {
+            padding: 50px;
+            margin-top: -100px;
+            position: relative;
+            /* Ensure it is above the hero gradient */
+            z-index: 10;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .movie-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #757575;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            color: #757575;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .grid-message {
+            grid-column: 1 / -1;
+            /* Span all columns */
+            text-align: center;
+            font-size: 1.2rem;
+            padding: 40px 0;
+            color: #757575;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .hero {
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .movies-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .movies-section {
+                padding: 20px;
+            }
+
+            .movie-card img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">MOVIES YARD</a>
+        <nav class="nav-links">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Bollywood Movies</a>
+            <a href="#" class="nav-link">TV Shows</a>
+            <a href="#" class="nav-link">New & Popular</a>
+            <a href="#" class="nav-link">Tamil Movies</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Unlimited Movies, TV Shows, and More.</h1>
+            <p>Watch anywhere. Cancel anytime. Ready to watch? Browse our collection of award-winning movies and TV
+                shows.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary watch-now-btn">Watch Now</button>
+                <button class="btn btn-secondary my-list-btn">Bollywood Movies</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <main>
+        <section class="movies-section">
+            <!-- The three sections have been combined into one for simplicity -->
+            <h2 class="section-title">Browse All Movies</h2>
+            <div class="movies-grid" id="movie-grid">
+                <!-- Movie cards will be added dynamically with JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" class="footer-link">Audio Description</a>
+            <a href="#" class="footer-link">Help Center</a>
+            <a href="#" class="footer-link">Gift Cards</a>
+            <a href="#" class="footer-link">Media Center</a>
+            <a href="#" class="footer-link">Investor Relations</a>
+            <a href="#" class="footer-link">Jobs</a>
+            <a href="#" class="footer-link">Terms of Use</a>
+            <a href="#" class="footer-link">Privacy</a>
+            <a href="#" class="footer-link">Legal Notices</a>
+            <a href="#" class="footer-link">Cookie Preferences</a>
+            <a href="#" class="footer-link">Corporate Information</a>
+            <a href="#" class="footer-link">Contact Us</a>
+        </div>
+        <p class="copyright">© 2023 Movies Yard. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- STEP 1: DEFINE YOUR DATA SOURCE ---
+        // Replace this URL with the URL of your own Cloudflare Worker.
+        const MOVIES_DATA_URL = 'https://hollywood-api-proxy.your-username.workers.dev/movies';
+
+        /* 
+         * Your movies.json file on GitHub should look like this:
+         * An array of objects, where each object has a `thumbnailUrl` and a `redirectUrl`.
+         *
+         * [
+         *   {
+         *     "thumbnailUrl": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+         *     "redirectUrl": "https://www.youtube.com/watch?v=some_video_id"
+         *   },
+         *   {
+         *     "thumbnailUrl": "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
+         *     "redirectUrl": "https://www.another-video-site.com/watch/12345"
+         *   }
+         * ]
+         */
+
+        // --- STEP 2: DYNAMICALLY CREATE AND DISPLAY MOVIE CARDS ---
+
+        /**
+         * Fetches movie data from the specified URL.
+         * @returns {Promise<Array>} A promise that resolves to an array of movie objects.
+         */
+        async function fetchMovies() {
+            const movieGrid = document.getElementById('movie-grid');
+            try {
+                const response = await fetch(MOVIES_DATA_URL);
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok (status: ${response.status})`);
+                }
+                const movies = await response.json();
+                return movies;
+            } catch (error) {
+                console.error('Failed to fetch movies:', error);
+                // Display an error message to the user in the grid
+                movieGrid.innerHTML = `<p class="grid-message">Could not load movies. Please try again later.</p>`;
+                return []; // Return an empty array on failure
+            }
+        }
+
+        /**
+         * Creates a single movie card element.
+         * @param {object} movie - A movie object with `thumbnailUrl` and `redirectUrl`.
+         * @returns {HTMLElement} The movie card element.
+         */
+        function createMovieCard(movie) {
+            const movieCard = document.createElement('a'); // Changed to an anchor tag for semantics
+            movieCard.className = 'movie-card';
+            movieCard.href = movie.redirectUrl; // Set the redirect URL
+            movieCard.target = '_blank'; // Ensure it opens in a new tab
+            movieCard.rel = 'noopener noreferrer';
+
+            // Use the thumbnail URL from the data. Add a placeholder in case of error.
+            movieCard.innerHTML = `
+                <img src="${movie.thumbnailUrl}" alt="Movie Poster" onerror="this.src='https://via.placeholder.com/200x300?text=Image+Not+Found'">
+            `;
+
+            return movieCard;
+        }
+
+        /**
+         * Renders a list of movies into the main grid.
+         * @param {Array} movies - An array of movie objects.
+         */
+        function displayMovies(movies) {
+            const movieGrid = document.getElementById('movie-grid');
+
+            // Clear any previous content (like loading or error messages)
+            movieGrid.innerHTML = '';
+
+            if (!movies || movies.length === 0) {
+                movieGrid.innerHTML = `<p class="grid-message">No movies found.</p>`;
+                return;
+            }
+
+            movies.forEach(movie => {
+                const movieCard = createMovieCard(movie);
+                movieGrid.appendChild(movieCard);
+            });
+        }
+
+        // --- STEP 3: INITIALIZE THE APPLICATION ---
+
+        /**
+         * The main function to initialize the page.
+         */
+        async function initializeApp() {
+            const movieGrid = document.getElementById('movie-grid');
+            movieGrid.innerHTML = `<p class="grid-message">Loading movies...</p>`;
+
+            const movies = await fetchMovies();
+            displayMovies(movies);
+
+            // Setup other links (optional, if they have a consistent target)
+            setupStaticLinks();
+        }
+
+        /**
+         * Function to handle all static link clicks (header, footer, etc.).
+         */
+        function setupStaticLinks() {
+            const links = document.querySelectorAll('.nav-link, .watch-now-btn, .my-list-btn, .footer-link');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // You can set a default link for these, or handle them differently
+                    window.open('https://www.youtube.com/@techpk3013', '_blank');
+                });
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Initialize the page when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', initializeApp);
+
+    </script>
+</body>
+
+</html>
