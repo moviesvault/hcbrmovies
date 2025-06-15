@@ -55,9 +55,7 @@ header.scrolled {
 
 /* Hero Section */
 .hero {
-    /* --- THE FIX IS HERE --- */
-    height: 80vh; /* Changed from 100vh to 80vh to make it shorter */
-    
+    height: 80vh; 
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') no-repeat center center/cover;
     display: flex;
@@ -122,7 +120,6 @@ header.scrolled {
 /* Movies Grid */
 .movies-section {
     padding: 50px;
-    /* The negative margin is no longer needed with the shorter hero section */
     margin-top: 0; 
     position: relative;
     z-index: 10;
@@ -170,13 +167,13 @@ header.scrolled {
     right: 0;
     padding: 20px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
-    opacity: 0; /* Hidden by default */
+    opacity: 0; 
     transition: opacity 0.3s ease-in-out;
     pointer-events: none;
 }
 
 .movie-card:hover .movie-info {
-    opacity: 1; /* Revealed on hover */
+    opacity: 1; 
 }
 
 .movie-title {
@@ -221,7 +218,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Animations */
+/* Animations and Grid Messages */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -240,6 +237,34 @@ footer {
     padding: 40px 0;
     color: #757575;
 }
+
+/* --- NEW STYLES FOR VPN NOTICE BAR --- */
+.vpn-notice {
+    background-color: #222;
+    border-left: 4px solid #e50914; /* A nice red accent border */
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin-bottom: 40px; /* Space between the notice and the movie title */
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between the icon and the text */
+}
+
+.vpn-notice i {
+    font-size: 1.5rem;
+    color: #e50914;
+}
+
+.vpn-notice p {
+    font-size: 0.9rem;
+    color: #d2d2d2;
+    margin: 0;
+}
+
+.vpn-notice p strong {
+    color: #fff;
+}
+/* --- END OF NEW STYLES --- */
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -260,5 +285,9 @@ footer {
     }
     .movie-card img {
         height: 220px;
+    }
+    .vpn-notice {
+        flex-direction: column;
+        text-align: center;
     }
 }
