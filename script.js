@@ -1,9 +1,8 @@
 // --- DEFINE YOUR DATA SOURCE ---
-// IMPORTANT: Replace this placeholder with your real, live Cloudflare Worker URL.
-// Example: const MOVIES_DATA_URL = 'https://my-movies-api.your-username.workers.dev';
-const MOVIES_DATA_URL = 'https://your-real-api-url.workers.dev';
+// IMPORTANT: You MUST replace this placeholder with your REAL, LIVE Cloudflare Worker URL.
+const MOVIES_DATA_URL = 'https://movie-heaven.digimoviesvault.workers.dev';
 
-// A global variable to hold the original list of all movies, so we don't have to re-fetch it.
+// A global variable to hold the original list of all movies.
 let allMovies = [];
 
 // --- HELPER FUNCTIONS ---
@@ -19,6 +18,7 @@ function getYouTubeThumbnailUrl(videoID) {
     return `https://i.ytimg.com/vi/${videoID}/hqdefault.jpg`;
 }
 
+
 // --- MAIN APPLICATION LOGIC ---
 async function fetchMovies() {
     const movieGrid = document.getElementById('movie-grid');
@@ -31,7 +31,7 @@ async function fetchMovies() {
         return movies;
     } catch (error) {
         console.error('Failed to fetch movies:', error);
-        movieGrid.innerHTML = `<p class="grid-message">Could not load movies. Please check the API URL and your internet connection.</p>`;
+        movieGrid.innerHTML = `<p class="grid-message">Could not load movies. Please check your connection or try again later.</p>`;
         return [];
     }
 }
@@ -80,38 +80,24 @@ function displayMovies(movies) {
     });
 }
 
-/**
- * Handles the search functionality by filtering the master list of movies.
- */
 function handleSearch(event) {
     const searchTerm = event.target.value.toLowerCase();
-
     const filteredMovies = allMovies.filter(movie => {
-        // This ensures the movie has a title before trying to search it.
         return movie.title && movie.title.toLowerCase().includes(searchTerm);
     });
-
     displayMovies(filteredMovies);
 }
 
-/**
- * The main function that runs when the page loads.
- */
 async function initializeApp() {
     const movieGrid = document.getElementById('movie-grid');
     const searchInput = document.getElementById('search-input');
 
     movieGrid.innerHTML = `<p class="grid-message">Loading movies...</p>`;
 
-    // Fetch all movies and store them in our global "master list".
     allMovies = await fetchMovies(); 
-    
-    // Display all movies for the first time.
     displayMovies(allMovies);
 
-    // Add the event listener to the search bar that calls handleSearch every time you type.
     searchInput.addEventListener('input', handleSearch);
-
     setupStaticLinks();
 }
 
@@ -134,5 +120,4 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// This line starts the entire application once the webpage is ready.
 document.addEventListener('DOMContentLoaded', initializeApp);
