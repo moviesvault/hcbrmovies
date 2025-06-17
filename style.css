@@ -55,7 +55,7 @@ header.scrolled {
 
 /* Hero Section */
 .hero {
-    height: 90vh;
+    height: 80vh; 
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
         url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') no-repeat center center/cover;
     display: flex;
@@ -71,7 +71,7 @@ header.scrolled {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 250px;
+    height: 150px;
     background: linear-gradient(to top, #141414, transparent);
     z-index: 1;
 }
@@ -129,13 +129,56 @@ header.scrolled {
     background-color: rgba(109, 109, 110, 0.4);
 }
 
-/* Movies Grid */
+/* Movies Section */
 .movies-section {
-    padding: 50px;
+    padding: 20px 50px 50px 50px;
     position: relative;
     z-index: 10;
-    margin-top: -250px; 
+    margin-top: -150px;
 }
+
+/* --- NEW STYLES FOR BIG, CENTERED SEARCH BAR --- */
+.search-section {
+    max-width: 700px;
+    margin: 0 auto 40px auto; /* Centers the section and adds space below */
+}
+
+.search-container {
+    position: relative;
+}
+
+#search-input {
+    width: 100%;
+    padding: 18px 25px 18px 60px; /* Increased padding for a bigger look */
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 1.2rem; /* Bigger font */
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#search-input:focus {
+    border-color: #e50914;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
+
+#search-input::placeholder {
+    color: #888;
+}
+
+.search-container::before {
+    content: '\bx-search';
+    font-family: 'Boxicons';
+    position: absolute;
+    left: 25px; /* Moved icon further left */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1.5rem; /* Bigger icon */
+}
+/* --- END OF NEW STYLES --- */
 
 .section-title {
     font-size: 1.8rem;
@@ -199,7 +242,6 @@ header.scrolled {
     color: #d2d2d2;
 }
 
-/* Footer */
 footer {
     background-color: #000;
     padding: 50px;
@@ -229,16 +271,9 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Animations and Grid Messages */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .grid-message {
@@ -249,7 +284,6 @@ footer {
     color: #757575;
 }
 
-/* VPN Notice Bar */
 .vpn-notice {
     background-color: #222;
     border-left: 4px solid #e50914; 
@@ -266,44 +300,27 @@ footer {
     color: #e50914;
 }
 
-/* --- THE FIX IS HERE --- */
-/* These styles control the text inside the notice bar. */
 .vpn-notice p {
-    font-family: Arial, Helvetica, sans-serif; /* A clear, standard font */
-    font-size: 1rem; /* Increased from 0.9rem for better visibility */
-    color: #dcdcdc; /* Slightly brighter for better contrast */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: #dcdcdc;
     margin: 0;
-    letter-spacing: 0.5px; /* Adds a little space between letters */
+    letter-spacing: 0.5px;
 }
 
 .vpn-notice p strong {
     color: #fff;
-    font-weight: 600; /* Makes "Heads Up:" a bit bolder */
+    font-weight: 600;
 }
-/* --- END OF FIX --- */
 
-/* Responsive */
 @media (max-width: 768px) {
-    header {
-        padding: 15px 20px;
-    }
-    .hero {
-        padding: 0 20px;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    .movies-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-    .movies-section {
-        padding: 20px;
-    }
-    .movie-card img {
-        height: 220px;
-    }
-    .vpn-notice {
-        flex-direction: column;
-        text-align: center;
-    }
+    header { padding: 15px 20px; }
+    .hero { padding: 0 20px; }
+    .hero h1 { font-size: 2.5rem; }
+    .movies-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .movies-section { padding: 20px; }
+    .movie-card img { height: 220px; }
+    .vpn-notice { flex-direction: column; text-align: center; }
+    #search-input { font-size: 1rem; padding: 15px 20px 15px 50px; }
+    .search-container::before { left: 20px; font-size: 1.2rem; }
 }
