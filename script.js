@@ -1,8 +1,10 @@
 // --- DEFINE YOUR DATA SOURCE ---
-// IMPORTANT: You MUST replace this placeholder with your REAL, LIVE Cloudflare Worker URL.
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!! IMPORTANT: YOU MUST REPLACE THIS PLACEHOLDER URL !!!!!!
+// !!!!!! WITH YOUR REAL, LIVE CLOUDFLARE WORKER URL.   !!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const MOVIES_DATA_URL = 'https://movie-heaven.digimoviesvault.workers.dev';
 
-// A global variable to hold the original list of all movies.
 let allMovies = [];
 
 // --- HELPER FUNCTIONS ---
@@ -18,7 +20,6 @@ function getYouTubeThumbnailUrl(videoID) {
     return `https://i.ytimg.com/vi/${videoID}/hqdefault.jpg`;
 }
 
-
 // --- MAIN APPLICATION LOGIC ---
 async function fetchMovies() {
     const movieGrid = document.getElementById('movie-grid');
@@ -31,7 +32,7 @@ async function fetchMovies() {
         return movies;
     } catch (error) {
         console.error('Failed to fetch movies:', error);
-        movieGrid.innerHTML = `<p class="grid-message">Could not load movies. Please check your connection or try again later.</p>`;
+        movieGrid.innerHTML = `<p class="grid-message">Could not load movies. Please check your API URL and internet connection.</p>`;
         return [];
     }
 }
