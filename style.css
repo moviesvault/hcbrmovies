@@ -137,10 +137,10 @@ header.scrolled {
     margin-top: -150px;
 }
 
-/* --- NEW STYLES FOR BIG, CENTERED SEARCH BAR --- */
+/* --- NEW STYLES FOR A CLEANER SEARCH SECTION --- */
 .search-section {
     max-width: 700px;
-    margin: 0 auto 40px auto; /* Centers the section and adds space below */
+    margin: 0 auto 50px auto; /* Centers the section and adds more space below */
 }
 
 .search-container {
@@ -149,12 +149,12 @@ header.scrolled {
 
 #search-input {
     width: 100%;
-    padding: 18px 25px 18px 60px; /* Increased padding for a bigger look */
-    background-color: #333;
-    border: 1px solid #555;
+    padding: 18px 25px 18px 60px;
+    background-color: #222; /* Slightly lighter background */
+    border: 1px solid #444; /* More subtle border */
     border-radius: 50px;
     color: #fff;
-    font-size: 1.2rem; /* Bigger font */
+    font-size: 1.2rem;
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -172,20 +172,13 @@ header.scrolled {
     content: '\bx-search';
     font-family: 'Boxicons';
     position: absolute;
-    left: 25px; /* Moved icon further left */
+    left: 25px;
     top: 50%;
     transform: translateY(-50%);
     color: #888;
-    font-size: 1.5rem; /* Bigger icon */
+    font-size: 1.5rem;
 }
 /* --- END OF NEW STYLES --- */
-
-.section-title {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    position: relative;
-    display: inline-block;
-}
 
 .movies-grid {
     display: grid;
