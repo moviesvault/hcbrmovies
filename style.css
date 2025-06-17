@@ -137,10 +137,9 @@ header.scrolled {
     margin-top: -150px;
 }
 
-/* Big, Centered Search Bar */
+/* Search Section */
 .search-section {
     max-width: 700px;
-    /* Adjusted margin to provide perfect spacing */
     margin: 20px auto 50px auto; 
 }
 
@@ -160,14 +159,24 @@ header.scrolled {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+/* --- THE VISUAL FIX IS HERE --- */
+/* This adds the red "glow" effect when you click on the search bar. */
 #search-input:focus {
     border-color: #e50914;
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.6);
 }
 
 #search-input::placeholder {
     color: #888;
 }
+
+/* This hides the ugly default "X" clear button in the search bar. */
+#search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+/* --- END OF FIX --- */
 
 .search-container::before {
     content: '\bx-search';
