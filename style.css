@@ -159,7 +159,6 @@ header.scrolled {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* --- THE VISUAL FIX FOR THE SEARCH BAR --- */
 #search-input:focus {
     border-color: #e50914;
     box-shadow: 0 0 15px rgba(229, 9, 20, 0.6);
@@ -169,8 +168,12 @@ header.scrolled {
     color: #888;
 }
 
-/* This hides the ugly default "X" clear button in the search bar */
-#search-input::-webkit-search-cancel-button {
+/* --- THE FIX IS HERE --- */
+/* This block of code hides the default 'X' button in Webkit-based browsers like Chrome. */
+#search-input::-webkit-search-decoration,
+#search-input::-webkit-search-cancel-button,
+#search-input::-webkit-search-results-button,
+#search-input::-webkit-search-results-decoration {
     -webkit-appearance: none;
     appearance: none;
     display: none;
