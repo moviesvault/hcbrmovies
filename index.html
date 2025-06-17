@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Heaven - Your Ultimate Movie Destination</title>
     
-    <!-- This line connects your HTML to your CSS file -->
+    <!-- Link to your CSS file -->
     <link rel="stylesheet" href="style.css">
-    <!-- Icon library for the little "info" icon -->
+    
+    <!-- Icon library for the VPN notice and new search icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
-    <!-- Header -->
     <header id="header">
-        <a href="/" class="logo">MOVIE HEAVEN</a>
-<!--         <nav class="nav-links">
+        <a href="#" class="logo">MOVIE HEAVEN</a>
+        <nav class="nav-links">
             <a href="#" class="nav-link">Home</a>
             <a href="#" class="nav-link">Bollywood Movies</a>
             <a href="#" class="nav-link">TV Shows</a>
             <a href="#" class="nav-link">New & Popular</a>
             <a href="#" class="nav-link">Tamil Movies</a>
-        </nav> -->
+        </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Unlimited Movies, TV Shows, and More.</h1>
-            <p>Watch anywhere. Cancel anytime. Ready to watch? Browse our collection of award-winning movies and TV
-                shows.</p>
-<!--             <div class="hero-buttons">
+            <p>Watch anywhere. Cancel anytime. Ready to watch? Browse our collection of award-winning movies and TV shows.</p>
+            <div class="hero-buttons">
                 <button class="btn btn-primary watch-now-btn">Watch Now</button>
                 <button class="btn btn-secondary my-list-btn">Bollywood Movies</button>
-            </div> -->
+            </div>
         </div>
     </section>
 
-    <!-- Movies Section -->
     <main>
         <section class="movies-section">
-            
-            <!-- --- NEW VPN NOTICE BAR --- -->
             <div class="vpn-notice">
                 <i class='bx bx-info-circle'></i>
                 <p><strong>Heads Up:</strong> Some content may be region-locked. A VPN may be required for full access.</p>
             </div>
-            <!-- --- END OF NEW SECTION --- -->
+            
+            <!-- NEW BIG SEARCH SECTION -->
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="search" id="search-input" placeholder="Search for movies by title...">
+                </div>
+            </div>
 
             <h2 class="section-title">Browse All Movies</h2>
             <div class="movies-grid" id="movie-grid">
-                <!-- Movie cards will be added dynamically by script.js -->
+                <!-- Movies will be loaded here by script.js -->
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-links">
             <a href="#" class="footer-link">Audio Description</a>
@@ -72,11 +70,10 @@
             <a href="#" class="footer-link">Corporate Information</a>
             <a href="#" class="footer-link">Contact Us</a>
         </div>
-        <p class="copyright">© 2023 Movies Yard. All rights reserved.</p>
+        <p class="copyright">© 2023 Movie Heaven. All rights reserved.</p>
     </footer>
 
-    <!-- This line connects your HTML to your JavaScript file -->
+    <!-- Link to your JavaScript file -->
     <script src="script.js"></script>
 </body>
-
 </html>
