@@ -168,17 +168,18 @@ header.scrolled {
     color: #888;
 }
 
-/* --- THE FIX IS HERE --- */
-/* This block of code hides the default 'X' button in Webkit-based browsers like Chrome. */
+/* ========================================= */
+/* === THE DEFINITIVE FIX FOR THE VISUAL BUG === */
+/* ========================================= */
+/* This block of code hides the ugly default "X" clear button that appears in some browsers. */
 #search-input::-webkit-search-decoration,
 #search-input::-webkit-search-cancel-button,
 #search-input::-webkit-search-results-button,
 #search-input::-webkit-search-results-decoration {
-    -webkit-appearance: none;
-    appearance: none;
-    display: none;
+  display: none;
 }
-/* --- END OF FIX --- */
+/* ========================================= */
+/* ========================================= */
 
 .search-container::before {
     content: '\bx-search';
