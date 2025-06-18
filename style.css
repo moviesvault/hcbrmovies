@@ -143,13 +143,18 @@ header.scrolled {
     margin: 20px auto 50px auto; 
 }
 
+/* ========================================= */
+/* === START OF THE CORRECTED CODE BLOCK === */
+/* ========================================= */
+
 .search-container {
     position: relative;
 }
 
 #search-input {
     width: 100%;
-    padding: 18px 25px 18px 60px;
+    /* This padding makes space on the left for the icon */
+    padding: 18px 25px 18px 60px; 
     background-color: #222;
     border: 1px solid #444;
     border-radius: 50px;
@@ -168,21 +173,22 @@ header.scrolled {
     color: #888;
 }
 
-/* ========================================= */
-/* === THE DEFINITIVE FIX FOR THE VISUAL BUG === */
-/* ========================================= */
-/* This block of code hides the ugly default "X" clear button that appears in some browsers. */
+/* 
+  This rule hides the ugly default "X" clear button that appears 
+  in some browsers for input[type="search"]. This is critical to
+  prevent the bug you saw.
+*/
 #search-input::-webkit-search-decoration,
 #search-input::-webkit-search-cancel-button,
 #search-input::-webkit-search-results-button,
 #search-input::-webkit-search-results-decoration {
+  -webkit-appearance: none; /* A more robust way to hide it */
   display: none;
 }
-/* ========================================= */
-/* ========================================= */
 
+/* This places the magnifying glass icon on the left */
 .search-container::before {
-    content: '\bx-search';
+    content: '\bx-search'; /* This is the Boxicons search icon */
     font-family: 'Boxicons';
     position: absolute;
     left: 25px;
@@ -190,7 +196,13 @@ header.scrolled {
     transform: translateY(-50%);
     color: #888;
     font-size: 1.5rem;
+    pointer-events: none; /* Prevents the icon from being clicked */
 }
+
+/* ======================================= */
+/* === END OF THE CORRECTED CODE BLOCK === */
+/* ======================================= */
+
 
 .movies-grid {
     display: grid;
