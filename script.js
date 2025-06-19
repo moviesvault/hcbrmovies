@@ -99,17 +99,6 @@ async function initializeApp() {
     displayMovies(allMovies);
 
     searchInput.addEventListener('input', handleSearch);
-    setupStaticLinks();
-}
-
-function setupStaticLinks() {
-    const links = document.querySelectorAll('.nav-link, .watch-now-btn, .my-list-btn, .footer-link');
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.open('https://www.youtube.com/@techpk3013', '_blank');
-        });
-    });
 }
 
 window.addEventListener('scroll', () => {
