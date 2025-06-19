@@ -143,10 +143,6 @@ header.scrolled {
     margin: 20px auto 50px auto; 
 }
 
-/* ========================================= */
-/* === START OF THE CORRECTED CODE BLOCK === */
-/* ========================================= */
-
 .search-container {
     position: relative;
 }
@@ -173,19 +169,6 @@ header.scrolled {
     color: #888;
 }
 
-/* 
-  This rule hides the ugly default "X" clear button that appears 
-  in some browsers for input[type="search"]. This is critical to
-  prevent the bug you saw.
-*/
-#search-input::-webkit-search-decoration,
-#search-input::-webkit-search-cancel-button,
-#search-input::-webkit-search-results-button,
-#search-input::-webkit-search-results-decoration {
-  -webkit-appearance: none; /* A more robust way to hide it */
-  display: none;
-}
-
 /* This places the magnifying glass icon on the left */
 .search-container::before {
     content: '\bx-search'; /* This is the Boxicons search icon */
@@ -198,11 +181,6 @@ header.scrolled {
     font-size: 1.5rem;
     pointer-events: none; /* Prevents the icon from being clicked */
 }
-
-/* ======================================= */
-/* === END OF THE CORRECTED CODE BLOCK === */
-/* ======================================= */
-
 
 .movies-grid {
     display: grid;
@@ -340,4 +318,12 @@ footer {
     .vpn-notice { flex-direction: column; text-align: center; }
     #search-input { font-size: 1rem; padding: 15px 20px 15px 50px; }
     .search-container::before { left: 20px; font-size: 1.2rem; }
+}
+
+/* FORCIBLY HIDE THE BROWSER'S DEFAULT SEARCH CANCEL BUTTON */
+#search-input::-webkit-search-decoration,
+#search-input::-webkit-search-cancel-button,
+#search-input::-webkit-search-results-button,
+#search-input::-webkit-search-results-decoration {
+  display: none !important;
 }
