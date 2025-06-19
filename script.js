@@ -1,10 +1,7 @@
 // --- DEFINE YOUR DATA SOURCE ---
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// !!!!!! IMPORTANT: YOU MUST REPLACE THIS PLACEHOLDER URL !!!!!!
-// !!!!!! WITH YOUR REAL, LIVE CLOUDFLARE WORKER URL.   !!!!!!
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const MOVIES_DATA_URL = 'https://movie-heaven.digimoviesvault.workers.dev';
 
+// This will hold the original list of all movies
 let allMovies = [];
 
 // --- HELPER FUNCTIONS ---
@@ -81,11 +78,17 @@ function displayMovies(movies) {
     });
 }
 
+// This function runs every time you type in the search bar
 function handleSearch(event) {
     const searchTerm = event.target.value.toLowerCase();
+    
+    // Filter the original list of movies
     const filteredMovies = allMovies.filter(movie => {
+        // Check if the movie title includes the search term
         return movie.title && movie.title.toLowerCase().includes(searchTerm);
     });
+    
+    // Display only the filtered movies
     displayMovies(filteredMovies);
 }
 
@@ -95,9 +98,13 @@ async function initializeApp() {
 
     movieGrid.innerHTML = `<p class="grid-message">Loading movies...</p>`;
 
+    // Fetch all movies and store them in our global variable
     allMovies = await fetchMovies(); 
+    
+    // Display all movies initially
     displayMovies(allMovies);
 
+    // Add an event listener to the search bar
     searchInput.addEventListener('input', handleSearch);
 }
 
