@@ -324,10 +324,3 @@ footer {
         font-size: 1.2rem; 
     }
 }
-
-/* === THE DEFINITIVE FIX === */
-/* Forcibly hide the browser's default cancel button on all screen sizes */
-#search-input::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  display: none !important;
-}
