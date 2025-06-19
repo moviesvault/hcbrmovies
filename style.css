@@ -308,6 +308,7 @@ footer {
     font-weight: 600;
 }
 
+/* === RESPONSIVE STYLES FOR SMALLER SCREENS === */
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .hero { padding: 0 20px; }
@@ -316,11 +317,19 @@ footer {
     .movies-section { padding: 20px; }
     .movie-card img { height: 220px; }
     .vpn-notice { flex-direction: column; text-align: center; }
-    #search-input { font-size: 1rem; padding: 15px 20px 15px 50px; }
-    .search-container::before { left: 20px; font-size: 1.2rem; }
+    
+    /* Adjustments for the search bar on mobile */
+    #search-input { 
+        font-size: 1rem; 
+        padding: 15px 20px 15px 50px; 
+    }
+    .search-container::before { 
+        left: 20px; 
+        font-size: 1.2rem; 
+    }
 }
 
-/* FORCIBLY HIDE THE BROWSER'S DEFAULT SEARCH CANCEL BUTTON */
+/* === FORCIBLY HIDE THE BROWSER'S DEFAULT SEARCH CANCEL BUTTON === */
 #search-input::-webkit-search-decoration,
 #search-input::-webkit-search-cancel-button,
 #search-input::-webkit-search-results-button,
