@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: red !important; /* ADD THIS LINE FOR THE TEST */
+    background-color: #141414;
     color: #fff;
 }
 
@@ -149,7 +149,6 @@ header.scrolled {
 
 #search-input {
     width: 100%;
-    /* This padding makes space on the left for the icon */
     padding: 18px 25px 18px 60px; 
     background-color: #222;
     border: 1px solid #444;
@@ -169,9 +168,8 @@ header.scrolled {
     color: #888;
 }
 
-/* This places the magnifying glass icon on the left */
 .search-container::before {
-    content: '\bx-search'; /* This is the Boxicons search icon */
+    content: '\bx-search';
     font-family: 'Boxicons';
     position: absolute;
     left: 25px;
@@ -179,7 +177,7 @@ header.scrolled {
     transform: translateY(-50%);
     color: #888;
     font-size: 1.5rem;
-    pointer-events: none; /* Prevents the icon from being clicked */
+    pointer-events: none;
 }
 
 .movies-grid {
@@ -308,7 +306,6 @@ footer {
     font-weight: 600;
 }
 
-/* === RESPONSIVE STYLES FOR SMALLER SCREENS === */
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .hero { padding: 0 20px; }
@@ -318,7 +315,6 @@ footer {
     .movie-card img { height: 220px; }
     .vpn-notice { flex-direction: column; text-align: center; }
     
-    /* Adjustments for the search bar on mobile */
     #search-input { 
         font-size: 1rem; 
         padding: 15px 20px 15px 50px; 
@@ -329,10 +325,9 @@ footer {
     }
 }
 
-/* === FORCIBLY HIDE THE BROWSER'S DEFAULT SEARCH CANCEL BUTTON === */
-#search-input::-webkit-search-decoration,
-#search-input::-webkit-search-cancel-button,
-#search-input::-webkit-search-results-button,
-#search-input::-webkit-search-results-decoration {
+/* === THE DEFINITIVE FIX === */
+/* Forcibly hide the browser's default cancel button on all screen sizes */
+#search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
   display: none !important;
 }
